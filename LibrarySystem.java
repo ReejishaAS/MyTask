@@ -126,7 +126,6 @@ public class LibrarySystem {
                     String bookISN = scanner.nextLine();
                     System.out.print("Enter Chapter Count: ");
                     int bookChapterCount = scanner.nextInt();
-                    scanner.nextLine();
                     Book newBook = new Book(bookTitle, bookAuthor, bookYear, bookISBN, bookISN, bookChapterCount);
                     library.addItem(newBook);
                     break;

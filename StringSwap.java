@@ -5,22 +5,22 @@ public class StringSwap {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Enter the first string:");
-        String str1 = sc.nextLine();
+        String firstString = sc.nextLine();
 
         System.out.println("Enter the second string:");
-        String str2 = sc.nextLine();
+        String seconString = sc.nextLine();
 
         System.out.println("Before swapping strings:");
-        System.out.println("str1=" + str1);
-        System.out.println("str2=" + str2);
+        System.out.println("First string=" + firstString);
+        System.out.println("Second string=" + seconString);
 
-        str1 = str1 + str2;
-        str2 = str1.substring(0, str1.length() - str2.length());
-        str1 = str1.substring(str2.length());
+        firstString = firstString + seconString;
+        seconString = firstString.substring(0, firstString.length() - seconString.length());
+        firstString = firstString.substring(seconString.length());
 
         System.out.println("After swapping strings:");
-        System.out.println("str1=" + str1);
-        System.out.println("str2=" + str2);
+        System.out.println("str1=" + firstString);
+        System.out.println("str2=" + seconString);
 
     }
 }

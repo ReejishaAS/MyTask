@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import java.util.Scanner;
 
 public class ArraySizeCheck {
@@ -21,8 +20,6 @@ public class ArraySizeCheck {
     }
 
 }
-=======
-import java.util.Scanner;
 
 public class ArraySizeCheck {
     public static void main(String[] args) {
@@ -44,4 +41,3 @@ public class ArraySizeCheck {
     }
 
 }
->>>>>>> 3c055ef6b8a3a42aea23a1f44de17be9a528bfae

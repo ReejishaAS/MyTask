@@ -107,13 +107,8 @@ public class LibrarySystemException {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("Library Menu:");
-            System.out.println("1. Add Book");
-            System.out.println("2. Add Magazine");
-            System.out.println("3. Remove Item");
-            System.out.println("4. Display Items");
-            System.out.println("5. Exit");
-            System.out.print("Select an option: ");
+            System.out
+                    .println("Library Menu:\n 1.Add Book\n 2.Add Magazine\n 3.Remove item\n 4.Display items\n 5.Exit");
 
             int choice = scanner.nextInt();
             scanner.nextLine();

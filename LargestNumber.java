@@ -13,18 +13,22 @@ public class LargestNumber {
         System.out.println("Enter the third number");
         int thirdNumber = sc.nextInt();
 
-        if ((firstNumber > secondNumber)) {
+        int largestNumber;
+
+        if (firstNumber > secondNumber) {
             if (firstNumber > thirdNumber) {
-                System.out.println("largest number is " + firstNumber);
+                largestNumber = firstNumber;
             } else {
-                System.out.println("Largest number is " + thirdNumber);
+                largestNumber = thirdNumber;
             }
         } else {
             if (secondNumber > thirdNumber) {
-                System.out.println("Largest number is " + secondNumber);
+                largestNumber = secondNumber;
             } else {
-                System.out.println("Largest number is " + thirdNumber);
+                largestNumber = thirdNumber;
             }
         }
+
+        System.out.println("Largest number is " + largestNumber);
     }
 }

@@ -1,5 +1,4 @@
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 class EmployeeDetails {
@@ -36,26 +35,34 @@ class PermanentEmployee extends EmployeeDetails {
 }
 
 class PartTimeEmployee extends EmployeeDetails {
-    public PartTimeEmployee(String name, int id) {
+    private String shiftTime;
+
+    public PartTimeEmployee(String name, int id, String shiftTime) {
         super(name, id);
+        this.shiftTime = shiftTime;
     }
 
     public void displayInfo() {
         super.displayInfo();
+        System.out.println("Shift Time: " + shiftTime);
     }
 }
 
 class ContractEmployee extends EmployeeDetails {
-    public ContractEmployee(String name, int id) {
+    private String contractType;
+
+    public ContractEmployee(String name, int id, String contractType) {
         super(name, id);
+        this.contractType = contractType;
     }
 
     public void displayInfo() {
         super.displayInfo();
+        System.out.println("Contract Type: " + contractType);
     }
 }
 
-class EmployeeManagementSystem {
+public class EmployeeManagementSystem {
     private HashMap<String, EmployeeDetails> employeeMap = new HashMap<>();
     private Scanner scanner = new Scanner(System.in);
 
@@ -99,12 +106,12 @@ class EmployeeManagementSystem {
         } else {
             System.out.println("Employee with name " + name + " not found.");
         }
+
     }
 
     public static void main(String[] args) {
         EmployeeManagementSystem employeeSystem = new EmployeeManagementSystem();
         Scanner scanner = new Scanner(System.in);
-
         while (true) {
             System.out.println(
                     "Employee Management System\n 1. Create Employee\n 2. Modify Employee\n 3. Remove Employee\n 4. List Employees\n 5. Search Employee\n 6. Exit");
@@ -114,23 +121,36 @@ class EmployeeManagementSystem {
 
             switch (choice) {
                 case 1:
-                    System.out.print("Enter the employee name: ");
-                    String name = scanner.nextLine();
-                    System.out.print("Enter the employee ID: ");
-                    int id = scanner.nextInt();
                     System.out.print("Enter the Employee Type:\n 1. Permanent\n 2. Part-Time\n 3. Contract\n ");
                     int employeeType = scanner.nextInt();
+                    scanner.nextLine();
 
                     EmployeeDetails employee = null;
                     switch (employeeType) {
                         case 1:
+                            System.out.print("Enter the employee name: ");
+                            String name = scanner.nextLine();
+                            System.out.print("Enter the employee ID: ");
+                            int id = scanner.nextInt();
                             employee = new PermanentEmployee(name, id);
                             break;
                         case 2:
-                            employee = new PartTimeEmployee(name, id);
+                            System.out.print("Enter the employee name: ");
+                            String partEmName = scanner.nextLine();
+                            System.out.print("Enter the employee ID: ");
+                            int partEmId = scanner.nextInt();
+                            System.out.println("Enter the shift time:");
+                            String shiftTime = scanner.nextLine();
+                            employee = new PartTimeEmployee(partEmName, partEmId, shiftTime);
                             break;
                         case 3:
-                            employee = new ContractEmployee(name, id);
+                            System.out.print("Enter the employee name: ");
+                            String conEmName = scanner.nextLine();
+                            System.out.print("Enter the employee ID: ");
+                            int conEmId = scanner.nextInt();
+                            System.out.println("Enter the shift time:");
+                            String type = scanner.nextLine();
+                            employee = new ContractEmployee(conEmName, conEmId, type);
                             break;
                         default:
                             System.out.println("Invalid employee type.");
@@ -142,13 +162,50 @@ class EmployeeManagementSystem {
                     }
                     break;
                 case 2:
-                    System.out.print("Enter the name of the employee to modify: ");
-                    String nameToModify = scanner.nextLine();
-                    System.out.print("Enter the new employee ID: ");
-                    int newId = scanner.nextInt();
-                    employeeSystem.modifyEmployee(nameToModify, newId);
+                    System.out.print("Enter the Employee Type:\n 1. Permanent\n 2. Part-Time\n 3. Contract\n ");
+                    int modifyEmployeeType = scanner.nextInt();
+                    scanner.nextLine();
+
+                    EmployeeDetails modifyEmployee = null;
+                    switch (modifyEmployeeType) {
+                        case 1:
+                            System.out.print("Enter the name of the employee to modify: ");
+                            String permanentNameToModify = scanner.nextLine();
+                            System.out.print("Enter the employee new ID: ");
+                            int newId = scanner.nextInt();
+                            modifyEmployeeType = new PermanentEmployee(permanentNameToModify, newId);
+                            break;
+                        case 2:
+                            System.out.print("Enter the name of the employee to modify: ");
+                            String nameToModify = scanner.nextLine();
+                            System.out.print("Enter the employee new ID: ");
+                            int partEmNewId = scanner.nextInt();
+                            System.out.println("Enter the shift time:");
+                            String shiftTime = scanner.nextLine();
+                            modifyEmployeeType = new PartTimeEmployee(nameToModify, partEmId, shiftTime);
+                            break;
+                        case 3:
+                            System.out.print("Enter the name of the employee to modify: ");
+                            String contractNameToModify = scanner.nextLine();
+                            System.out.print("Enter the employee new ID: ");
+                            int conEmNewId = scanner.nextInt();
+                            System.out.println("Enter the modify shift time:");
+                            String type = scanner.nextLine();
+                            modifyEmployeeType = new ContractEmployee(contractNameToModify, conEmNewId, type);
+                            break;
+                        default:
+                            System.out.println("Invalid employee type.");
+                            break;
+                    }
+
+                    if (modifyEmployee != null) {
+                        employeeSystem.modifyEmployee(nameToModify, newId);
+                    }
+                    break;
+
                     break;
                 case 3:
+
                     System.out.print("Enter the name of the employee to remove: ");
                     String nameToRemove = scanner.nextLine();
                     employeeSystem.removeEmployee(nameToRemove);

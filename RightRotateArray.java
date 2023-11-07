@@ -7,8 +7,8 @@ public class RightRotateArray {
         System.out.println("Enter the array size:");
         int size = sc.nextInt();
 
-        System.out.println("Enter the position to right rotate:");
-        int position = sc.nextInt();
+        System.out.println("Enter the number of positions to right-rotate:");
+        int positions = sc.nextInt();
 
         System.out.println("Enter the array elements:");
         int[] array = new int[size];
@@ -16,17 +16,13 @@ public class RightRotateArray {
             array[i] = sc.nextInt();
         }
 
-        System.out.println("Array is:");
-        for (int element : array) {
-            System.out.print(element + " ");
-        }
+        System.out.println("Original Array:");
+        printArray(array);
 
-        rightRotate(array, position);
+        rightRotate(array, positions);
 
-        System.out.println("\nRight rotated array is:");
-        for (int element : array) {
-            System.out.print(element + " ");
-        }
+        System.out.println("Right-Rotated Array:");
+        printArray(array);
     }
 
     public static void rightRotate(int[] arr, int pos) {
@@ -45,5 +41,12 @@ public class RightRotateArray {
         for (int i = 0; i < pos; i++) {
             arr[i] = temp[i];
         }
+    }
+
+    public static void printArray(int[] arr) {
+        for (int element : arr) {
+            System.out.print(element + " ");
+        }
+        System.out.println();
     }
 }

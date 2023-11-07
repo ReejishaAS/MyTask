@@ -1,11 +1,9 @@
 import java.util.Scanner;
 
 public class ArraySizeCheck {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the array size");
+
+    public void checkSize(int size) {
         try {
-            int size = sc.nextInt();
             if (size < 0) {
                 throw new NegativeArraySizeException();
 
@@ -19,25 +17,13 @@ public class ArraySizeCheck {
         }
     }
 
-}
-
-public class ArraySizeCheck {
     public static void main(String[] args) {
+        ArraySizeCheck check = new ArraySizeCheck();
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the array size");
-        try {
-            int size = sc.nextInt();
-            if (size < 0) {
-                throw new NegativeArraySizeException();
+        int size = sc.nextInt();
+        check.checkSize(size);
 
-            }
-
-        }
-
-        catch (NegativeArraySizeException e) {
-            System.out.println("Error: Array size cann't be negative");
-
-        }
     }
 
 }

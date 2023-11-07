@@ -1,6 +1,10 @@
+import java.util.*;
+
 public class TryCatchFinally {
     public static void main(String[] args) {
-        int number = 10;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the number:");
+        int number = sc.nextInt();
         int result = 0;
         try {
             result = number / result;

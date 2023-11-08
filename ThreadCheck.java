@@ -1,37 +1,33 @@
-class Thread1 extends Thread {
-    private String message;
-
-    public Thread1(String message) {
-        this.message = message;
-    }
-
+class FirstThread extends Thread {
     public void run() {
-        System.out.println("This is Thread 1: " + message);
-
+        System.out.println("FirstThread is running...");
     }
 }
 
-class Thread2 extends Thread {
+class SecondThread extends Thread {
     public void run() {
-        System.out.println("This is Thread 2");
+        System.out.println("SecondThread is running...");
     }
 }
 
 public class ThreadCheck {
+    private FirstThread firstThread;
+    private SecondThread secondThread;
+
+    public ThreadCheck() {
+        firstThread = new FirstThread();
+        secondThread = new SecondThread();
+        firstThread.start();
+        secondThread.start();
+    }
+
+    public void checkThreads() {
+        System.out.println("Is first thread working? " + firstThread.isAlive());
+        System.out.println("Is second thread working? " + secondThread.isAlive());
+    }
+
     public static void main(String[] args) {
-        Thread1 t1 = new Thread1(" hello ");
-        Thread2 t2 = new Thread2();
-        t1.start();
-        t2.start();
-        if (t1.isAlive()) {
-            System.out.println("Tread 1 is alive");
-        } else {
-            System.out.println("Thread 1 is dead");
-        }
-        if (t2.isAlive()) {
-            System.out.println("Tread 2 is alive");
-        } else {
-            System.out.println("Thread 2 is dead");
-        }
+        ThreadCheck threadCheck = new ThreadCheck();
+        threadCheck.checkThreads();
     }
 }

@@ -1,22 +1,26 @@
 class FirstThread extends Thread {
+    String name;
+
     public FirstThread(String name) {
-        super(name);
+        this.name = name;
         start();
     }
 
     public void run() {
-        System.out.println("FirstThread is running...");
+        System.out.println(name);
     }
 }
 
 class SecondThread extends Thread {
+    String name;
+
     public SecondThread(String name) {
-        super(name);
+        this.name = name;
         start();
     }
 
     public void run() {
-        System.out.println("SecondThread is running...");
+        System.out.println(name);
     }
 }
 

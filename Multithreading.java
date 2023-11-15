@@ -6,14 +6,17 @@ class MultiThread extends Thread {
     }
 
     public void run() {
+        System.out.println(Thread.currentThread().isAlive() ? Thread.currentThread().getName() + " is lives" : "");
 
         String[] words = message[0].split("\\s+");
 
         for (String word : words) {
             System.out.println(Thread.currentThread().getName() + " " + word);
         }
+        System.out.println(Thread.currentThread().getName() + " is dead.");
 
     }
+
 }
 
 public class Multithreading {
@@ -25,17 +28,5 @@ public class Multithreading {
 
         thread0.start();
         thread1.start();
-
-        System.out.println(thread0.isAlive() ? "Thread-0 is lives." : "");
-        System.out.println(thread1.isAlive() ? "Thread-1 is lives." : "");
-
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            System.out.println(e);
-        }
-
-        System.out.println("Thread-0 is dead.");
-        System.out.println("Thread-1 is dead.");
     }
 }

@@ -1,9 +1,5 @@
 class MultiThread extends Thread {
-    private String[] message;
-
-    public MultiThread(String[] message) {
-        this.message = message;
-    }
+    String[] message = { "Java is object-oriented, open source, easy to learn, high performance, and fast" };;
 
     public void run() {
         System.out.println(Thread.currentThread().isAlive() ? Thread.currentThread().getName() + " is lives" : "");
@@ -21,10 +17,9 @@ class MultiThread extends Thread {
 
 public class Multithreading {
     public static void main(String[] args) {
-        String[] message = { "Java is object-oriented, open source, easy to learn, high performance, and fast" };
 
-        MultiThread thread0 = new MultiThread(message);
-        MultiThread thread1 = new MultiThread(message);
+        MultiThread thread0 = new MultiThread();
+        MultiThread thread1 = new MultiThread();
 
         thread0.start();
         thread1.start();

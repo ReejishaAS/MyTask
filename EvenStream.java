@@ -17,7 +17,8 @@ public class EvenStream {
         list.stream()
                 .filter(num -> num % 2 == 0)
                 .distinct()
-                .forEach(num -> System.out.println(num));
+                .sorted()
+                .forEach(System.out::println);
 
     }
 

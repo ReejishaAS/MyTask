@@ -70,28 +70,28 @@ class BloodBank {
         }
     }
 
-    /// private String getPriorityBloodGroup(String priority) {
+    private String getPriorityBloodGroup(String priority) {
 
-    // switch (priority) {
-    // case "P1":
-    // return "A";
-    // case "P2":
-    // return "AB";
-    // case "P3":
-    // return "B";
-    // case "P4":
-    // case "P5":
-    // return "O";
-    // case "P6":
-    // case "P7":
-    // case "P8":
-    // case "P9":
-    // case "P10":
+        switch (priority) {
+            case "P1":
+                return "A";
+            case "P2":
+                return "AB";
+            case "P3":
+                return "B";
+            case "P4":
+            case "P5":
+                return "O";
+            case "P6":
+            case "P7":
+            case "P8":
+            case "P9":
+            case "P10":
 
-    // default:
-    // return "O";
-    // }
-    // }
+            default:
+                return "O";
+        }
+    }
 }
 
 public class BloodAllocationSystem {

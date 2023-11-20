@@ -15,6 +15,10 @@ class Employee {
         this.name = name;
         this.type = type;
     }
+
+    public String toString() {
+        return +id + " " + name + " " + type + " ";
+    }
 }
 
 public class StreamEmployeeSystem {
@@ -47,34 +51,27 @@ public class StreamEmployeeSystem {
                 case 3:
                     System.out.println("Enter the employee id to search: ");
                     int searchId = sc.nextInt();
-                    employees.stream()
+                    List<Employee> searchResults = employees.stream()
                             .filter(employee -> employee.id == searchId)
-                            .forEach(employee -> System.out
-                                    .println(employee.id + " " + employee.name + " " + employee.type));
-
+                            .collect(Collectors.toList());
+                    System.out.println("Search Results: " + searchResults);
                     break;
                 case 4:
-                    employees.stream().forEach(
-                            employee -> System.out.println(employee.id + " " + employee.name + " " + employee.type));
+                    System.out.println("List of Employees: " + employees);
                     break;
                 case 5:
                     System.out.println("Enter 1 to sort by ID, 2 to sort by Name:");
                     int sortChoice = sc.nextInt();
                     if (sortChoice == 1) {
-                        System.out.println("Sort Results by ID: ");
-                        employees.stream()
+                        List<Employee> sortById = employees.stream()
                                 .sorted(Comparator.comparingInt(employee -> employee.id))
-                                .forEach(employee -> System.out
-                                        .println(employee.id + " " + employee.name + " " + employee.type));
-
+                                .collect(Collectors.toList());
+                        System.out.println("Sort Results by ID: " + sortById);
                     } else if (sortChoice == 2) {
-                        System.out.println("Sort Results by Name: ");
-                        employees.stream()
+                        List<Employee> sortByName = employees.stream()
                                 .sorted(Comparator.comparing(employee -> employee.name))
-                                .forEach(
-                                        employee -> System.out
-                                                .println(employee.id + " " + employee.name + " " + employee.type));
-
+                                .collect(Collectors.toList());
+                        System.out.println("Sort Results by Name: " + sortByName);
                     } else {
                         System.out.println("Invalid sort choice.");
                     }

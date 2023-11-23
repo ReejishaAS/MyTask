@@ -10,6 +10,14 @@ class Donor {
         this.phoneNumber = phoneNumber;
         this.bloodGroup = bloodGroup;
     }
+
+    public String getName() {
+        return donorName;
+    }
+
+    public String getBloodGroup() {
+        return bloodGroup;
+    }
 }
 
 class Patient {
@@ -23,6 +31,18 @@ class Patient {
         this.patientPriority = patientPriority;
         this.unitsNeeded = unitsNeeded;
         this.bloodGroup = bloodGroup;
+    }
+
+    public String getName() {
+        return patientName;
+    }
+
+    public int getUnitsNeeded() {
+        return unitsNeeded;
+    }
+
+    public void setUnitsNeeds(int unitsNeeded) {
+        this.unitsNeeded = unitsNeeded;
     }
 }
 
@@ -46,14 +66,14 @@ class BloodBank {
         patients.add(patient);
 
         String bloodGroup = getPriorityBloodGroup(patient.patientPriority);
-        int unitsNeeded = patient.unitsNeeded;
+        int unitsNeeded = patient.getUnitsNeeded();
 
         Queue<Donor> donorQueue = donors.get(bloodGroup);
         if (donorQueue != null) {
             while (unitsNeeded > 0 && !donorQueue.isEmpty()) {
                 Donor donor = donorQueue.poll();
                 System.out
-                        .println("Patient: " + patient.patientName + " received 1 unit from Donor: " + donor.donorName);
+                        .println("Patient: " + patient.getName() + " received 1 unit from Donor: " + donor.getName());
                 unitsNeeded--;
             }
         }
@@ -61,8 +81,10 @@ class BloodBank {
         if (unitsNeeded > 0) {
             int reserve = bloodReserve.get(bloodGroup);
             if (unitsNeeded <= reserve) {
+                patient.setUnitsNeeds(unitsNeeded);
                 System.out.println(
-                        "Patient: " + patient.patientName + " received " + unitsNeeded + " units from Blood Reserve.");
+                        "Patient: " + patient.getName() + " received " + patient.getUnitsNeeded()
+                                + " units from Blood Reserve.");
                 bloodReserve.put(bloodGroup, reserve - unitsNeeded);
             } else {
                 System.out.println("Insufficient blood units available for Patient: " + patient.patientName);

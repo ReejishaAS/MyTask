@@ -1,0 +1,1 @@
+ & 'C:\Program Files\Java\jdk-18.0.2.1\bin\java.exe' '-XX:+ShowCodeDetailsInExceptionMessages' '-cp' 'C:\Users\Reejisha\AppData\Local\Temp\vscodesws_b0fdf\jdt_ws\jdt.ls-java-project\bin' 'FileSystem' 

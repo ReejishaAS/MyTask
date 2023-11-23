@@ -12,6 +12,7 @@ public class FileUser {
 
             File file = new File("C:\\Users\\Reejisha\\Desktop\\Task\\tes.txt");
             file.createNewFile();
+            
             FileWriter fw = new FileWriter(file);
             System.out.println("Write any sentence into file:");
             String sentence = sc.nextLine();

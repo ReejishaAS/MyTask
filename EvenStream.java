@@ -15,8 +15,9 @@ public class EvenStream {
         }
         System.out.println("Even numbers without duplicate: ");
         list.stream()
-                .filter(num -> num % 2 == 0)
                 .distinct()
+                .filter(num -> num % 2 == 0)
+                // .distinct()
                 .sorted()
                 .forEach(System.out::println);
 

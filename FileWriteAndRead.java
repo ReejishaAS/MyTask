@@ -26,6 +26,15 @@ public class FileWriteAndRead {
                 } catch (IOException e) {
                     System.out.println("Error occurred while writing the file.");
                     e.printStackTrace();
+                } finally {
+                    try {
+                        if (fw != null) {
+                            fw.close();
+                        }
+                    } catch (IOException e) {
+                        System.out.println("Error occurred while closing FileWriter.");
+                        e.printStackTrace();
+                    }
                 }
 
                 if (testFile.canRead()) {
@@ -59,15 +68,6 @@ public class FileWriteAndRead {
         } catch (IOException e) {
             System.out.println("Error occurred.");
             e.printStackTrace();
-        } finally {
-            try {
-                if (fw != null) {
-                    fw.close();
-                }
-            } catch (IOException e) {
-                System.out.println("Error occurred while closing FileWriter.");
-                e.printStackTrace();
-            }
         }
 
     }

@@ -39,7 +39,17 @@ public class FileWriteAndRead {
                     } catch (IOException e) {
                         System.out.println("Error occurred while reading the file.");
                         e.printStackTrace();
+                    } finally {
+                        try {
+                            if (fr != null) {
+                                fr.close();
+                            }
+                        } catch (IOException e) {
+                            System.out.println("Error occurred while closing FileReader.");
+                            e.printStackTrace();
+                        }
                     }
+
                 } else {
                     System.out.println("Cannot read the file.");
                 }
@@ -50,17 +60,15 @@ public class FileWriteAndRead {
             System.out.println("Error occurred.");
             e.printStackTrace();
         } finally {
-            // Close the FileWriter in the finally block to ensure it gets closed even if an
-            // exception occurs.
             try {
-                if ((fw != null) || (fr != null)) {
+                if (fw != null) {
                     fw.close();
-                    fr.close();
                 }
             } catch (IOException e) {
                 System.out.println("Error occurred while closing FileWriter.");
                 e.printStackTrace();
             }
         }
+
     }
 }

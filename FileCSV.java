@@ -51,15 +51,15 @@ public class FileCSV {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))) {
             for (int i = 0; i < list.size(); i++) {
                 bufferedWriter
-                        .write(list.get(i).firstName + list.get(i).lastName
-                                + "  "
-                                + list.get(i).phoneNumber + "  " + list.get(i).email + "\n");
+                        .write(list.get(i).firstName + "," + list.get(i).lastName
+                                + ","
+                                + list.get(i).phoneNumber + "," + list.get(i).email + "\n");
             }
             bufferedWriter.close();
 
             System.out.println("Contact add successfully..");
         } catch (Exception e) {
-            System.out.println("Error..");
+            System.out.println("Error.." + e.getMessage());
         }
 
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {

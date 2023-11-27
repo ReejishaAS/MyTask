@@ -49,25 +49,33 @@ public class FileContact {
             reader = new BufferedReader(new FileReader(file));
             while (true) {
                 System.out.println(
-                        " 1.Add Contact\n 2.Update Contact\n 3.Delete Contact\n 4.List Contact/ Show Log\n 5.Get Contact\n 6.Exit\n");
+                        " 1.Add Contact\n 2.Update Contact\n 3.Delete Contact\n 4.List Contact\n 5.Show Log\n 6.Get Contact\n 7.Exit\n");
                 System.out.println("Select your choice:");
                 int ch = sc.nextInt();
+                String input = "yes";
                 switch (ch) {
                     case 1:
-                        System.out.println("Enter the id:");
-                        int id = sc.nextInt();
-                        sc.nextLine();
-                        System.out.println("Enter the First Name:");
-                        String firstName = sc.nextLine();
-                        System.out.println("Enter the Last Name:");
-                        String lastName = sc.nextLine();
-                        System.out.println("Enter the Phone number:");
-                        long phoneNumber = sc.nextLong();
-                        sc.nextLine();
-                        System.out.println("Enter the Email id:");
-                        String email = sc.nextLine();
 
-                        list.add(new ContactInfo(id, firstName, lastName, phoneNumber, email));
+                        do {
+                            System.out.println("Enter the id:");
+                            int id = sc.nextInt();
+                            sc.nextLine();
+                            System.out.println("Enter the First Name:");
+                            String firstName = sc.nextLine();
+                            System.out.println("Enter the Last Name:");
+                            String lastName = sc.nextLine();
+                            System.out.println("Enter the Phone number:");
+                            long phoneNumber = sc.nextLong();
+                            sc.nextLine();
+                            System.out.println("Enter the Email id:");
+                            String email = sc.nextLine();
+                            list.add(new ContactInfo(id, firstName, lastName, phoneNumber, email));
+                            System.out.println("Do you want to enter the contact again yes/no?");
+
+                        } while (input.equals("yes")); {
+
+                        input = sc.nextLine();
+                    }
 
                         // Write to file
                         try {
@@ -108,12 +116,14 @@ public class FileContact {
                             String updatedEmail = sc.next();
 
                             // Update the existing contact
-                            ContactInfo updatedContact = new ContactInfo(contactId, updateFirstName, updatedLastName,
+                            ContactInfo updatedContact = new ContactInfo(contactId, updateFirstName,
+                                    updatedLastName,
                                     updatedPhoneNumber, updatedEmail);
                             list.set(indexToUpdate, updatedContact);
 
                         } else {
                             System.out.println("Contact ID not found.");
+
                         }
 
                         // Update the file
@@ -134,34 +144,50 @@ public class FileContact {
                         }
                         break;
                     case 3:
-                        System.out.println("Enter the contact ID to delete:");
-                        int deleteId = sc.nextInt();
-                        sc.nextLine();
-                        // Delete the contact
-                        boolean removed = list.removeIf(contact -> contact.getContactId() == deleteId);
+                        System.out.println("Do you want to delete File Or Delete list. 1.Delete list 2.Delete file ");
+                        int userInput = sc.nextInt();
+                        if (userInput == 1) {
+                            System.out.println("Enter the contact ID to delete:");
+                            int deleteId = sc.nextInt();
+                            sc.nextLine();
+                            // Delete the contact
+                            boolean removed = list.removeIf(contact -> contact.getContactId() == deleteId);
 
-                        // Again update the file
-                        if (removed) {
-                            try {
-                                for (ContactInfo contact : list) {
-                                    bufferedWriter.write(
-                                            contact.id + "  " + contact.firstName + " " + contact.lastName + "  "
-                                                    + contact.phoneNumber
-                                                    + "  "
-                                                    + contact.email + "\n");
+                            // Again update the file
+                            if (removed) {
+                                try {
+                                    for (ContactInfo contact : list) {
+                                        bufferedWriter.write(
+                                                contact.id + "  " + contact.firstName + contact.lastName + "  "
+                                                        + contact.phoneNumber
+                                                        + "  "
+                                                        + contact.email + "\n");
+                                    }
+                                    System.out.println("Contact deleted successfully.");
+                                } catch (IOException e) {
+                                    System.out.println("Error delete contacts to file.");
+                                    e.printStackTrace();
                                 }
-                                System.out.println("Contact deleted successfully.");
-                            } catch (IOException e) {
-                                System.out.println("Error delete contacts to file.");
-                                e.printStackTrace();
+                            } else {
+                                System.out.println("Contact ID not found.");
                             }
-                        } else {
-                            System.out.println("Contact ID not found.");
+                        }
+                        if (userInput == 2) {
+                            file.delete();
                         }
                         break;
                     case 4:
                         // List the file
-                        System.out.println("Contact List/Show Log:");
+                        System.out.println("List Contacts");
+                        for (ContactInfo contact : list) {
+                            System.out.println(contact.id + " " + contact.firstName + contact.lastName + " "
+                                    + contact.phoneNumber + " " + contact.email);
+                        }
+
+                        break;
+                    case 5:
+                        // Show log
+                        System.out.println("Show Log:");
                         try {
                             String line;
                             while ((line = reader.readLine()) != null) {
@@ -170,8 +196,7 @@ public class FileContact {
                         } catch (IOException e) {
                             System.out.println("Error..");
                         }
-                        break;
-                    case 5:
+                    case 6:
                         System.out.println("Which contact you want?");
                         int searchId = sc.nextInt();
                         sc.nextLine();
@@ -187,7 +212,7 @@ public class FileContact {
                         }
 
                         break;
-                    case 6:
+                    case 7:
                         System.out.println("Exit.");
                         sc.close();
                         System.exit(0);
